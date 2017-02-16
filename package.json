@@ -2,6 +2,7 @@
   "name": "testsite1",
   "version": "1.0.0",
   "dependencies": {
+    "anime-scraper": "^2.1.5",
     "jquery": "^2.2.3",
     "normalize.css": "^4.1.1"
   },
