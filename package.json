@@ -1,0 +1,19 @@
+{
+  "name": "testsite1",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "normalize.css": "^4.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.2",
+    "browser-sync": "^2.16.1",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.2.0",
+    "gulp-watch": "^4.3.10",
+    "postcss-import": "^8.1.2",
+    "postcss-mixins": "^5.4.1",
+    "postcss-nested": "^1.0.0",
+    "postcss-simple-vars": "^3.0.0"
+  }
+}
