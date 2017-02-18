@@ -2,6 +2,8 @@
   "name": "testsite1",
   "version": "1.0.0",
   "dependencies": {
+    "aniscrape": "^0.1.1",
+    "aniscrape-animebam": "^0.1.3",
     "bluebird": "^3.3.3",
     "body-parser": "^1.16.1",
     "bottleneck": "*",
