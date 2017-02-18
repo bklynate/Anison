@@ -1,17 +1,16 @@
-var Aniscrape = require('aniscrape'); // Check source on GitHub for more info.
-var animebam = require('aniscrape-animebam');
+const Aniscrape = require('aniscrape'); // Check source on GitHub for more info.
+const animebam = require('aniscrape-animebam');
+const fs = require('fs');
 
-var scraper = new Aniscrape();
+const scraper = new Aniscrape();
 scraper.use(animebam)
 .then(function() {
-  scraper.search('Haikyuu', 'animebam').then(function (results) {
-    console.log(results)
+  scraper.search('boku no hero academia', 'animebam').then(function (results) {
+    console.log('RESULTS:', results)
     scraper.fetchSeries(results[0]).then(function(anime) {
-      console.log(anime)
-      scraper.fetchVideo(anime.episodes[1]).then(function(video) {
-        // Video is a list of direct video links and quality labels.
-        console.log(video)
-      })
+      console.log('ANIME:', anime)
+      fs.write
+
     })
   })
 })
