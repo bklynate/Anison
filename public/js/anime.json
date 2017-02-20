@@ -1,0 +1,67 @@
+{
+    "seriesName": "Boku no Hero Academia",
+    "seriesUrl": "http://animebam.net/series/boku-no-hero-academia",
+    "searchProvider": "animebam",
+    "episodes": [{
+        "number": 1,
+        "title": "Episode 13",
+        "url": "http://animebam.net/bokunoheroacademia-episode-13-3618-5569",
+        "searchProvider": "animebam"
+    }, {
+        "number": 2,
+        "title": "Episode 12",
+        "url": "http://animebam.net/bokunoheroacademia-episode-12-7545",
+        "searchProvider": "animebam"
+    }, {
+        "number": 3,
+        "title": "Episode 10",
+        "url": "http://animebam.net/bokunoheroacademia-episode-10-4683",
+        "searchProvider": "animebam"
+    }, {
+        "number": 4,
+        "title": "Episode 9",
+        "url": "http://animebam.net/bokunohero-academia-episode-9-8094",
+        "searchProvider": "animebam"
+    }, {
+        "number": 5,
+        "title": "Episode 8",
+        "url": "http://animebam.net/bokunohero-academia-episode-8-6062",
+        "searchProvider": "animebam"
+    }, {
+        "number": 6,
+        "title": "Episode 7",
+        "url": "http://animebam.net/bokunoheroacademia-episode-7-4512",
+        "searchProvider": "animebam"
+    }, {
+        "number": 7,
+        "title": "Episode 6",
+        "url": "http://animebam.net/bokunoheroacademia-episode-6-1146",
+        "searchProvider": "animebam"
+    }, {
+        "number": 8,
+        "title": "Episode 5",
+        "url": "http://animebam.net/boku-no-hero-academia-anime-episode-5-9061",
+        "searchProvider": "animebam"
+    }, {
+        "number": 9,
+        "title": "Episode 4",
+        "url": "http://animebam.net/bokunohero-academia-episode-4-3676",
+        "searchProvider": "animebam"
+    }, {
+        "number": 10,
+        "title": "Episode 3",
+        "url": "http://animebam.net/boku-noheroacademia-anime-episode-3-4426-9378",
+        "searchProvider": "animebam"
+    }, {
+        "number": 11,
+        "title": "Episode 2",
+        "url": "http://animebam.net/bokunoheroacademia-episode-2-9557",
+        "searchProvider": "animebam"
+    }, {
+        "number": 12,
+        "title": "Episode 1",
+        "url": "http://animebam.net/bokunoheroacademia-episode-1-7872",
+        "searchProvider": "animebam"
+    }],
+    "isSpecial": false
+}
