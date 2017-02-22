@@ -1,8 +1,11 @@
 const Aniscrape = require('aniscrape'); // Check source on GitHub for more info.
 const animebam = require('aniscrape-animebam');
 const fs = require('fs');
-const request = require('request');
-const cheerio = require('cheerio');
+const phantomjs = require('phantomjs-prebuilt');
+const webdriverio = require('webdriverio');
+const wdOpts = { desiredCapabilities: { browserName: 'phantomjs' } }
+const Horseman = require('node-horseman');
+const horseman = new Horseman();
 
 const scraper = new Aniscrape();
 scraper.use(animebam)
@@ -12,18 +15,15 @@ scraper.use(animebam)
     scraper.fetchSeries(results[0]).then(function(anime) {
       // console.log('ANIME:', anime.episodes[0].url)
       let url = anime.episodes[0].url
-      console.log(url);
-      request(url, function(error, response, html){
-        if(!error){
-          let $ = cheerio.load(html);
-          console.log($.html());
-          console.log($('.jw-video').attr('src'));
-        }
-      })
-      // fs.writeFile('./public/js/anime.json', JSON.stringify(anime), function(err){
-      //   if(err) throw err
-      //   console.log("Object was saved");
-      // })
+      // console.log(url);
+      horseman
+        .userAgent('Chrome/41.0.2228.0')
+        .open(url)
+        .html()
+        .then(html => {
+          console.log(html);
+        })
+        .close();
     })
   })
 })
