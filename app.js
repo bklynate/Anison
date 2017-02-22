@@ -1,18 +1,18 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-// const path = require('path')
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const animeBot = require('./public/js/animeBot.js')
 
-app.use(express.static('public'));
-// app.set('views', path.join(__dirname, '/views'));
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
-// app.set('port', process.env.PORT || 8080);
+app
+	.use(express.static('public'))
+	.set('view engine', 'jsx')
+	.engine('jsx', require('express-react-views').createEngine())
+	.get('/', require('./routes').index)
 
-var users = [];
 // socket io
+var users = [];
 io.on("connection", function(socket) {
 	// users 
 	socket.on("new user", function(data, callback) {
@@ -25,30 +25,21 @@ io.on("connection", function(socket) {
 			updateUsers();
 		}
 	})
-
-	// send message
+	// chat
 	socket.on("send message", function(data) {
 		io.emit("new message", {msg: data, user: socket.user})
 	})
-
 	socket.on("disconnect", function() {
 		if (!socket.user) return;
 		users.splice(users.indexOf(socket.user), 1);
 		updateUsers();
 	})
-
 	function updateUsers() {
 		io.emit("usernames", users);
 	}
 })
 
-
-app.get('/', require('./routes').index);
-
-// app.listen(app.get('port'), () => {
-//   console.log('Alive on port', app.get('port'));
-// })
-
+// listening on server
 server.listen(3000, function() {
 	console.log('Alive on port 3000');
 })
