@@ -3,7 +3,6 @@ const animebam = require('aniscrape-animebam');
 const fs = require('fs');
 const xray = require('x-ray')()
 
-
 scraper.use(animebam)
 .then(function() {
   scraper.search('boku no hero academia', 'animebam').then(function (results) {
