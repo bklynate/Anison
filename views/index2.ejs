@@ -17,25 +17,40 @@
   </head>
   <body>
     <div class="container">
+      <h1>CHAT2</h1>
+      <div class="userFormArea">
+        <form class="userForm">
+          <label>Enter Your Name:</label>
+          <input id="username" autocomplete="off" /><button>Send</button>
+        </form>
+        <p id="errorMsg"></p>
+      </div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="nice-form">
-            <form action="/" method="POST" class="center-block">
-              <div class="form-group">
-                <input class="form-control" type="text" name="animeName" placeholder="Type in anime name">
-              </div>
-              <div class="form-group">
-                <button class="btn btn-primary btn-lg btn-block" id="sendTitle">Submit</button>
-              </div>
-            </form>
+          <div class="chatArea">
+            <div class="onlineUsers">
+              <h3>Online users:</h3>
+              <div class="users"></div>
+            </div>
+            <div class="chat">
+              <ul id="messages"></ul>
+              <form class="messageForm">
+                <input id="message" autocomplete="off" placeholder="Send Message" /><button>Send</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+      <iframe src="<%=data%>"' width="560" height="315" frameborder="0" allowfullscreen></iframe>
+
     </div>
 
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='../public/js/scrape.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="../public/js/script.js"></script>
   </body>
 </html>
