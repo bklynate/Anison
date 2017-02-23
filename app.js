@@ -10,7 +10,7 @@ const xray = require('x-ray')()
 const scraper = new Aniscrape();
 
 app
-	.use(express.static('public'))
+	.use('/public', express.static(__dirname + '/public'))
 	.set('view engine', 'ejs')
 	.get('/', function(req, res) {
   	scraper.use(animebam)
@@ -29,35 +29,37 @@ app
 		    })
 		  })
 	})
+	.get('/chat', function(req, res, next) {
+		res.render('index')
+	})
 
 // socket io
-// var users = [];
-// io.on("connection", function(socket) {
-// 	// users 
-// 	socket.on("new user", function(data, callback) {
-// 		if (users.indexOf(data) != -1) {
-// 			callback(false);
-// 		} else {
-// 			callback(true);
-// 			socket.user = data;
-// 			users.push(socket.user);
-// 			updateUsers();
-// 		}
-// 	})
-// 	// chat
-// 	socket.on("send message", function(data) {
-// 		io.emit("new message", {msg: data, user: socket.user})
-// 	})
-// 	socket.on("disconnect", function() {
-// 		if (!socket.user) return;
-// 		users.splice(users.indexOf(socket.user), 1);
-// 		updateUsers();
-// 	})
-// 	function updateUsers() {
-// 		io.emit("usernames", users);
-// 	}
-// })
-
+var users = [];
+io.on("connection", function(socket) {
+	// users 
+	socket.on("new user", function(data, callback) {
+		if (users.indexOf(data) != -1) {
+			callback(false);
+		} else {
+			callback(true);
+			socket.user = data;
+			users.push(socket.user);
+			updateUsers();
+		}
+	})
+	// chat
+	socket.on("send message", function(data) {
+		io.emit("new message", {msg: data, user: socket.user})
+	})
+	socket.on("disconnect", function() {
+		if (!socket.user) return;
+		users.splice(users.indexOf(socket.user), 1);
+		updateUsers();
+	})
+	function updateUsers() {
+		io.emit("usernames", users);
+	}
+})
 
 // listening on server
 server.listen(3000, function() {

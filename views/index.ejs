@@ -2,14 +2,35 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../public/css/main.css">
     <title>Hello World</title>
   </head>
   <body>
-  <h1>Hello</h1>
-
-  <input type="search" id="#search"><br>
+    <h1>CHAT</h1>
+    <div class="userFormArea">
+      <form class="userForm">
+        <label>Enter Your Name:</label>
+        <input id="username" autocomplete="off" /><button>Send</button>
+      </form>
+      <p id="errorMsg"></p>
+    </div>
+    <div class="chatArea">
+      <div class="onlineUsers">
+        <h3>Online users:</h3> 
+        <div class="users"></div>
+      </div> 
+      <div class="chat">
+        <ul id="messages"></ul>
+        <form class="messageForm">
+          <input id="message" autocomplete="off" placeholder="Send Message" /><button>Send</button>
+        </form>
+      </div>
+    </div>
   
-  <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-  <script type='text/javascript' src='../public/js/scrape.js'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script type='text/javascript' src='../public/js/scrape.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="../public/js/script.js"></script>
   </body>
 </html>
