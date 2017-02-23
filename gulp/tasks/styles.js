@@ -6,11 +6,11 @@ var addNestedCssStructures = require('postcss-nested');
 var cssImport = require('postcss-import');
 
 gulp.task('styles', function() {
-  return gulp.src('./assets/css/main.css')
+  return gulp.src('./public/css/main.css')
     .pipe(postCss([cssImport,addVariablesToCss,addNestedCssStructures,autoprefixer]))
     .on('error', function(error) {
       console.log(error.toString());
       this.emit('end');
     }) // if an error occurs
-    .pipe(gulp.dest('./assets/temp/css'));
+    .pipe(gulp.dest('./public/temp/css'));
 });
