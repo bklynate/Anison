@@ -3,3 +3,11 @@
 html {
   font: normal 100% Raleway;
 }
+
+.chatArea {
+	display: none;
+}
+
+#messages {
+	list-style: none;
+}
