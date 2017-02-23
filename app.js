@@ -9,6 +9,28 @@ const xray = require('x-ray')()
 
 const scraper = new Aniscrape();
 
+<<<<<<< HEAD
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
+app.post('/', function(req, res) {
+  scraper.use(animebam)
+  .then(function() {
+    scraper.search('boku no hero academia', 'animebam').then(function (results) {
+      // console.log('RESULTS:', results)
+      scraper.fetchSeries(results[0]).then(function(anime) {
+        // console.log('ANIME:', anime.episodes[0].url)
+        let url = anime.episodes[0].url
+        console.log(url);
+        var stream = xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
+          return console.log(info);
+        }).stream()
+        stream.pipe(res);
+      })
+    })
+  })
+=======
 app
 	.use('/public', express.static(__dirname + '/public'))
 	.set('view engine', 'ejs')
@@ -59,6 +81,7 @@ io.on("connection", function(socket) {
 	function updateUsers() {
 		io.emit("usernames", users);
 	}
+>>>>>>> b0d89f58d4a6a842acdfdde7690d302bafb43b53
 })
 
 // listening on server

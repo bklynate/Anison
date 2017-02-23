@@ -3,7 +3,7 @@ var watch = require('gulp-watch');
 var browserSync = require('browser-sync').create();
 
 gulp.task('cssInject', ['styles'], function() {
-  return gulp.src('./assets/temp/css/main.css')
+  return gulp.src('./public/temp/css/main.css')
     .pipe(browserSync.stream());
 })
 
@@ -15,11 +15,11 @@ gulp.task('watch', function() {
     }
   });
 
-  watch('./index.html', function() {
+  watch('./views/index.ejs', function() {
     browserSync.reload();
   });
 
-  watch('./assets/css/**/*.css', function() {
+  watch('./public/css/**/*.css', function() {
     gulp.start('cssInject');
   });
 
