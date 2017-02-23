@@ -1,7 +1,8 @@
 const Aniscrape = require('aniscrape'); // Check source on GitHub for more info.
 const animebam = require('aniscrape-animebam');
-const fs = require('fs');
 const xray = require('x-ray')()
+const scraper = new Aniscrape();
+
 
 scraper.use(animebam)
 .then(function() {
