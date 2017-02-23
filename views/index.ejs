@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<% include ./partials/header%>
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -8,33 +8,9 @@
               <input class="form-control" type="text" name="animeName" placeholder="Type in anime name">
             </div>
             <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block">Submit</button>
+              <button class="btn btn-primary btn-lg btn-block" id="sendTitle">Submit</button>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-    <h1>CHAT</h1>
-    <div class="userFormArea">
-      <form class="userForm">
-        <label>Enter Your Name:</label>
-        <input id="username" autocomplete="off" /><button>Send</button>
-      </form>
-      <p id="errorMsg"></p>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="chatArea">
-          <div class="onlineUsers">
-            <h3>Online users:</h3>
-            <div class="users"></div>
-          </div>
-          <div class="chat">
-            <ul id="messages"></ul>
-            <form class="messageForm">
-              <input id="message" autocomplete="off" placeholder="Send Message" /><button>Send</button>
-            </form>
-          </div>
         </div>
       </div>
     </div>
