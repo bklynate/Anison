@@ -14,8 +14,11 @@ app.set('view engine', 'ejs');
 // app.engine('jsx', require('express-react-views').createEngine());
 app.set('port', process.env.PORT || 8080);
 
-
 app.get('/', function(req, res) {
+  res.render('index');
+});
+
+app.post('/', function(req, res) {
   scraper.use(animebam)
   .then(function() {
     scraper.search('boku no hero academia', 'animebam').then(function (results) {

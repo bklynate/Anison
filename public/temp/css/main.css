@@ -422,5 +422,24 @@ textarea {
 }
 
 html {
-  font: normal 100% Raleway;
+  height: 100%
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#search {
+  text-align: center;
+  width:500px;
+  height: 70px;
+  font-size:3.5em;
+  border-radius:8px;
+}
+
+.nice-form {
+  width: 30%;
+  margin-top: 550px;
+  margin-left: auto;
+  margin-right: auto;
 }
