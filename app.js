@@ -31,6 +31,7 @@ app.post('/', function(req, res) {
           xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
             console.log(info); // logs the video src
             console.log(req.body.animeName); // logs the form data
+            res.send(`<iframe src=${info}></iframe>`)
           })
         })
       })
