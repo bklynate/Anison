@@ -1,1 +1,3 @@
-console.log($(this));
+$(function() {
+  
+})
