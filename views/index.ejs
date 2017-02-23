@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <% include ./partials/header%>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="nice-form">
-            <form action="/" method="POST" class="center-block">
-              <div class="form-group">
-                <input class="form-control" type="text" name="animeName" placeholder="Type in anime name">
-              </div>
-              <div class="form-group">
-                <button class="btn btn-primary btn-lg btn-block" id="sendTitle">Submit</button>
-              </div>
-            </form>
-          </div>
+<% include ./partials/header %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="nice-form">
+          <form action="/" method="POST" class="center-block">
+            <div class="form-group">
+              <input class="form-control" type="text" name="animeName" placeholder="Type in anime name">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" id="sendTitle">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    <% include ./partials/footer%>
-  </body>
-</html>
+  </div>
+<% include ./partials/footer %>

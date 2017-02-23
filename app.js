@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
           let url = anime.episodes[0].url
           console.log(url);
           xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
-            res.render('index2', {animeTitle: req.body.animeName, animeUrl: info});
+            res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info});
             console.log(info); // logs the video src
             console.log(req.body.animeName); // logs the form data
           })
@@ -41,35 +41,34 @@ app.post('/', function(req, res) {
 // socket io
 var users = [];
 io.on("connection", function(socket) {
-    // users
-    socket.on("new user", function(data, callback) {
-        if (users.indexOf(data) != -1) {
-            callback(false);
-        } else {
-            callback(true);
-            socket.user = data;
-            users.push(socket.user);
-            updateUsers();
-        }
+  // users
+  socket.on("new user", function(data, callback) {
+      if (users.indexOf(data) != -1) {
+          callback(false);
+      } else {
+          callback(true);
+          socket.user = data;
+          users.push(socket.user);
+          updateUsers();
+      }
+  })
+  // chat
+  socket.on("send message", function(data) {
+    io.emit("new message", {
+        msg: data,
+        user: socket.user
     })
-    // chat
-    socket.on("send message", function(data) {
-        io.emit("new message", {
-            msg: data,
-            user: socket.user
-        })
-    })
-    socket.on("disconnect", function() {
-        if (!socket.user)
-            return;
-        users.splice(users.indexOf(socket.user), 1);
-        updateUsers();
-    })
-    function updateUsers() {
-        io.emit("usernames", users);
-    }
+  })
+  socket.on("disconnect", function() {
+    if (!socket.user)
+        return;
+    users.splice(users.indexOf(socket.user), 1);
+    updateUsers();
+  })
+  function updateUsers() {
+    io.emit("usernames", users);
+  }
 })
-
 // listening on server
 server.listen(app.get('port'), function() {
 	console.log(`Alive on PORT:${app.get('port')}`);
