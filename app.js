@@ -37,10 +37,6 @@ app.post('/', function(req, res) {
     })
   });
 
-app.get('/chat', function(req, res, next) {
-  res.render('index');
-})
-
 // socket io
 var users = [];
 io.on("connection", function(socket) {
