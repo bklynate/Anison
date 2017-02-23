@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
           let url = anime.episodes[0].url
           console.log(url);
           xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
-            res.render('index2', {data: info});
+            res.render('index2', {animeTitle: req.body.animeName, animeUrl: info});
             console.log(info); // logs the video src
             console.log(req.body.animeName); // logs the form data
           })
