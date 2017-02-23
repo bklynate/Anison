@@ -21,3 +21,11 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
+
+.chatArea {
+	display: none;
+}
+
+#messages {
+	list-style: none;
+}
