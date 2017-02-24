@@ -30,6 +30,13 @@
       <div class="video col-xs-6">
         <h2><%= animeTitle %></h2>
         <iframe src="<%= animeUrl %>" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        <ul>
+          <% for(i=0;i<epNums.length;i++) { %>
+            <li>
+              <%= epNums[i] %> : <%= epUrls[i] %>
+            </li>
+          <% } %>
+        </ul>
       </div>
     </div>
   </div>

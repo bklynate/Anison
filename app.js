@@ -25,11 +25,19 @@ app.post('/', function(req, res) {
       scraper.search(animeTitle, 'animebam').then(function (results) {
         // console.log('RESULTS:', results)
         scraper.fetchSeries(results[0]).then(function(anime) {
-          // console.log('ANIME:', anime.episodes[0].url)
+          // saving episode list to array
+          var epUrls = [];
+          var epNums = [];
+          anime.episodes.forEach(function(e) {
+            epUrls.push(e.url);
+            epNums.push(e.title);
+          })
+          // anime episodes
+          // console.log(animeEps)
           let url = anime.episodes[0].url
           console.log(url);
           xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
-            res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info});
+            res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info, epUrls: epUrls, epNums: epNums});
             console.log(info); // logs the video src
             console.log(req.body.animeName); // logs the form data
           })
