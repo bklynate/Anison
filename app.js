@@ -25,22 +25,35 @@ app.post('/', function(req, res) {
       scraper.search(animeTitle, 'animebam').then(function (results) {
         // console.log('RESULTS:', results)
         scraper.fetchSeries(results[0]).then(function(anime) {
-          // saving episode list to array
+          // saving all episode info to array
           var epUrls = [];
           var epNums = [];
+          var vidSrcs = [];
+          console.log(anime.episodes);
           anime.episodes.forEach(function(e) {
             epUrls.push(e.url);
             epNums.push(e.title);
           })
-          // anime episodes
-          // console.log(animeEps)
-          let url = anime.episodes[0].url
-          console.log(url);
-          xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
-            res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info, epUrls: epUrls, epNums: epNums});
-            console.log(info); // logs the video src
-            console.log(req.body.animeName); // logs the form data
+          epUrls.forEach(function(e) {
+            getAllVidSrc(e)
           })
+          // anime episodes
+          let url = anime.episodes[0].url
+          tempGetVidSrc(url);
+          function tempGetVidSrc(url) {
+            xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
+              res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info, epUrls: epUrls, epNums: epNums, vidSrcs: vidSrcs});
+            })
+          }
+          function getAllVidSrc(url) {
+            xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
+              vidSrcs.push(info);
+              console.log(vidSrcs);
+              console.log(url);
+              // console.log(info); // logs the video src
+              // console.log(req.body.animeName); // logs the form data
+            })
+          }
         })
       })
     })
