@@ -38,9 +38,10 @@ app.post('/', function(req, res) {
     })
   });
 
+
 // socket io
 var users = [];
-io.on("connection", function(socket) {
+io.sockets.on("connection", function(socket) {
   // users
   socket.on("new user", function(data, callback) {
       if (users.indexOf(data) != -1) {
