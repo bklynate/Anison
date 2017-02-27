@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
           var epUrls = [];
           var epNums = [];
           var vidSrcs = [];
-          console.log(anime.episodes);
+          // console.log(anime.episodes);
           anime.episodes.forEach(function(e) {
             epUrls.push(e.url);
             epNums.push(e.title);
@@ -48,8 +48,8 @@ app.post('/', function(req, res) {
           function getAllVidSrc(url) {
             xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
               vidSrcs.push(info);
-              console.log(vidSrcs);
-              console.log(url);
+              // console.log(vidSrcs);
+              // console.log(url);
               // console.log(info); // logs the video src
               // console.log(req.body.animeName); // logs the form data
             })
@@ -61,17 +61,37 @@ app.post('/', function(req, res) {
 
 // socket io
 var users = [];
+var room = "room #1";
+var rooms = [];
 io.on("connection", function(socket) {
+  // rooms
+  // socket.join(room)
+  // io.in(room).emit("connectToRoom", "You are in " + room);
+  socket.on("create room", function(data, callback) {
+    if (rooms.indexOf(data) != -1) {
+      console.log("false");
+      callback(false);
+    } else {
+      console.log("true");
+      callback(true);
+      socket.room = data;
+      rooms.push(socket.room);
+      socket.join(data)
+      setTimeout(function() {
+        io.in(data).emit("connectToRoom", "you are in room: " + data);
+      }, 1000)
+    }
+  })
   // users
   socket.on("new user", function(data, callback) {
-      if (users.indexOf(data) != -1) {
-          callback(false);
-      } else {
-          callback(true);
-          socket.user = data;
-          users.push(socket.user);
-          updateUsers();
-      }
+    if (users.indexOf(data) != -1) {
+        callback(false);
+    } else {
+        callback(true);
+        socket.user = data;
+        users.push(socket.user);
+        updateUsers();
+    }
   })
   // chat
   socket.on("send message", function(data) {
@@ -80,6 +100,7 @@ io.on("connection", function(socket) {
         user: socket.user
     })
   })
+  // disconnect when closing to prevent memory leaks
   socket.on("disconnect", function() {
     if (!socket.user)
         return;
@@ -90,6 +111,7 @@ io.on("connection", function(socket) {
     io.emit("usernames", users);
   }
 })
+
 // listening on server
 server.listen(app.get('port'), function() {
 	console.log(`Alive on PORT:${app.get('port')}`);

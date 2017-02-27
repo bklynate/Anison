@@ -1,4 +1,17 @@
 var socket = io();
+var roomName = ["bleh"];
+//rooms
+$(".initialForm").submit(function(e) {
+	socket.emit("create room", $("#room").val(), function(data) {
+		$("#room").val("");
+	})
+})
+socket.on("connectToRoom", function(data) {
+	console.log(data);
+	console.log("from vid_chat js");
+	roomName.push(data);
+})
+
 // user
 $(".userForm").submit(function(e) {
 	e.preventDefault();
@@ -30,3 +43,4 @@ socket.on("new message", function(data) {
 	$("#messages").append("<li><strong>" + data.user + ": </strong>" + data.msg + "</li>");
 })
 
+console.log(roomName);
