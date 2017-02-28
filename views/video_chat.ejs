@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6">
-        <div id="roomDisplay"></div>
+        <div id="roomDisplay"><h3>You are in room: <%= rooms%></h3></div>
         <h1>CHAT</h1>
         <div class="userFormArea">
           <form class="userForm">
@@ -31,20 +31,7 @@
       <div class="video col-xs-6">
         <h2><%= animeTitle %></h2>
         <iframe src="<%= animeUrl %>" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-        number of vid src links: <%= vidSrcs.length%><br />
-        number of episode urls: <%= epUrls.length%>
-        <%= vidSrcs %> 
-        <ul>
-          <% for(i=0;i<epUrls.length;i++) { %>
-            <li>
-              <%= epNums[i] %> : <%= epUrls[i] %> : <%= vidSrcs[i]%>
-            </li>
-          <% } %>
-        </ul>
       </div>
     </div>
   </div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-  <script src="../public/js/video_chat.js"></script>
 <% include ./partials/footer %>
