@@ -25,14 +25,51 @@ app.post('/', function(req, res) {
       scraper.search(animeTitle, 'animebam').then(function (results) {
         // console.log('RESULTS:', results)
         scraper.fetchSeries(results[0]).then(function(anime) {
-          // console.log('ANIME:', anime.episodes[0].url)
-          let url = anime.episodes[0].url
-          console.log(url);
-          xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
-            res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info});
-            console.log(info); // logs the video src
-            console.log(req.body.animeName); // logs the form data
+          // saving all episode info to array
+          var epUrls = [];
+          var epNums = [];
+          var vidSrcs = [];
+
+          // this line grabs the url and title of each
+          // episode
+          anime.episodes.forEach(function(e) {
+            epUrls.push(e.url);
+            epNums.push(e.title);
           })
+
+          // this for each grabs the video srcs for every
+          // episode.
+          epUrls.forEach(function(e) {
+            // this .then says once getAllVidSrcs has ran
+            // then do this - making the async data call behave
+            // like synchronously
+            getAllVidSrcs(e).then(function(src){
+              vidSrcs.push(src)
+            })
+          })
+
+          // anime episodes
+          let url = anime.episodes[0].url
+          getPlayingVidSrc(url);
+
+          function getPlayingVidSrc(url) {
+            xray(url, 'iframe.embed-responsive-item@src')(function(error, info) {
+              res.render('video_chat', {animeTitle: req.body.animeName, animeUrl: info, epUrls: epUrls, epNums: epNums, vidSrcs: vidSrcs});
+            })
+          }
+          // getAllVidSrcs is a function that returns a promise
+          // that scrapes all the video srcs
+          function getAllVidSrcs(url) {
+            return new Promise(function(resolve, reject) {
+              xray(url, 'iframe.embed-responsive-item@src')(function(error, info){
+                if(error) {
+                  reject(error)
+                } else {
+                  resolve(info)
+                }
+              })
+            })
+          }
         })
       })
     })
